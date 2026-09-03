@@ -1,0 +1,19 @@
+# Abhängigkeiten (werden mit `npm install` neu erzeugt)
+node_modules
+
+# Fertig gebaute Seite (wird mit `npm run build` neu erzeugt)
+dist
+
+# Betriebssystem-Dateien
+.DS_Store
+
+# Geheime Zugangsdaten – gehören NIE ins Repository
+.env
+.env.*
+.dev.vars
+
+# Cloudflare-Werkzeuge (lokaler Cache)
+.wrangler
+
+# Lokale Einstellungen
+*.local

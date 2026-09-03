@@ -1,0 +1,59 @@
+/* ============================================================
+   FARBEN UND SCHRIFTEN
+   ============================================================
+   DIE EINZIGE DATEI, IN DER FARBEN UND SCHRIFTEN STEHEN.
+
+   Alle anderen Dateien benutzen nur die Namen von hier,
+   z. B. „var(--farbe-primaer)“. Änderst du hier einen Wert,
+   ändert sich die Farbe auf der ganzen Webseite.
+
+   So änderst du eine Farbe:
+   1. Farbe aussuchen, z. B. mit https://htmlcolorcodes.com/
+   2. Den Hex-Wert (das ist „#“ plus 6 Zeichen, z. B. #2f6f5e)
+      hier hinter dem Doppelpunkt ersetzen. Semikolon stehen lassen!
+   3. Speichern – die Seite im Browser aktualisiert sich von selbst.
+
+   Wichtig für Lesbarkeit: Text muss sich deutlich vom Hintergrund
+   abheben. Prüfen kannst du das hier (Ziel: mindestens „AA“):
+   https://webaim.org/resources/contrastchecker/
+   ============================================================ */
+
+:root {
+  /* --- Hauptfarbe -------------------------------------------
+     Knöpfe, Links, Überschriften-Akzente, Fußzeile. */
+  --farbe-primaer: #2f6f5e;
+
+  /* Dunklere Variante der Hauptfarbe – z. B. wenn man über einen Knopf fährt. */
+  --farbe-primaer-dunkel: #24564a;
+
+  /* Sehr helle Variante der Hauptfarbe – ruhige Hintergrundflächen. */
+  --farbe-primaer-hell: #e4efeb;
+
+  /* --- Akzentfarbe ------------------------------------------
+     Sparsam einsetzen: kleine Linien, Markierungen, Hervorhebungen.
+     Nicht für längeren Text auf hellem Grund (zu wenig Kontrast). */
+  --farbe-akzent: #d9a441;
+
+  /* --- Hintergründe ----------------------------------------- */
+  --farbe-hintergrund: #faf8f4;   /* Seitenhintergrund (warmes Weiß) */
+  --farbe-flaeche: #ffffff;       /* Kästchen/Karten, die darauf liegen */
+  --farbe-linie: #dfd9cf;         /* dünne Trennlinien und Rahmen */
+  --farbe-schatten: rgba(47, 111, 94, 0.12); /* weicher Schatten unter Karten */
+
+  /* --- Text ------------------------------------------------- */
+  --farbe-text: #23302c;          /* normaler Text */
+  --farbe-text-leise: #5f6b67;    /* Nebentext, z. B. Dauer/Preis, Fußzeile */
+  --farbe-text-auf-primaer: #ffffff; /* Text, der AUF der Hauptfarbe steht (Knöpfe) */
+
+  /* --- Schriften --------------------------------------------
+     Die Namen hier sind Schriften, die auf jedem Gerät vorhanden sind –
+     es wird nichts von außen geladen (Datenschutz).
+     Eigene Schriftart einbinden: siehe README.md, Abschnitt 9. */
+  --schrift-ueberschrift: Georgia, "Times New Roman", serif;
+  --schrift-text: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* --- Ecken ------------------------------------------------
+     Wie rund Ecken von Knöpfen und Karten sind. 0 = eckig. */
+  --radius-klein: 0.375rem;
+  --radius-gross: 1rem;
+}

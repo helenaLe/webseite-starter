@@ -32,7 +32,18 @@ node -v
 ```
 
 Es muss eine Version ab `v22.12` erscheinen, z. B. `v26.13.0`. Wenn nicht:
-Node.js neu installieren und Terminal neu öffnen.
+VS Code bzw. das Terminal ganz schließen und neu öffnen. Hilft das nicht,
+Node.js neu installieren.
+
+**Nur Windows – einmalig npm freischalten:** Windows blockiert in der
+PowerShell sonst den Befehl `npm`. Tippe im Terminal:
+
+```
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+```
+
+Bei der Rückfrage mit `J` (bzw. `Y`) bestätigen. Das gilt nur für dein
+Benutzerkonto und erlaubt Programme wie npm auf deinem Rechner.
 
 ## 2. Eigene Kopie anlegen
 
@@ -251,8 +262,9 @@ Nur heißt der Menüpunkt für die Nameserver dort etwas anders.
 | **Weiße Seite** nach dem Deploy | In Cloudflare unter *Settings → Builds* prüfen: Build output directory muss `dist` sein. Dann *Deployments → Retry deployment*. |
 | **`/impressum` liefert 404** auf Cloudflare, lokal geht es | Die Datei `public/_redirects` fehlt oder ist leer. Inhalt muss sein: `/* /index.html 200`. Danach neu pushen. |
 | **Build bricht ab wegen Node-Version** | Die Datei `.nvmrc` mit Inhalt `22` muss im Repository liegen. Alternativ in Cloudflare *Settings → Variables and Secrets* die Variable `NODE_VERSION` = `22` anlegen. |
+| **Windows:** „Die Benennung "node" wurde nicht … erkannt“ bzw. „node is not recognized …“ | VS Code komplett schließen und neu öffnen (nicht nur das Terminal). Unter *Einstellungen → Apps* prüfen, ob Node.js installiert ist – sonst die `x64.msi` installieren. Notfalls Rechner neu starten. |
 | **`npm install` schlägt fehl** | `node -v` prüfen – mindestens `v22.12`. Node.js LTS neu installieren, Terminal schließen und neu öffnen. |
-| **Windows:** „Die Ausführung von Skripts ist auf diesem System deaktiviert“ | In VS Code beim Terminal oben rechts auf das Pluszeichen-Menü → **Command Prompt** wählen. Oder einmalig in PowerShell eingeben: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` |
+| **Windows:** „Die Ausführung von Skripts ist auf diesem System deaktiviert“ bzw. „running scripts is disabled on this system“ | Einmalig in der PowerShell `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` eingeben und mit `J`/`Y` bestätigen (siehe Schritt 1). Ist das auf einem Firmenrechner gesperrt: in VS Code beim Terminal über den Pfeil neben dem Pluszeichen **Command Prompt** wählen, oder überall `npm.cmd` statt `npm` schreiben. |
 | **Seite aktualisiert sich nicht** im Browser | Läuft `npm run dev` noch im Terminal? Sonst neu starten. Im Browser `Strg + Umschalt + R` (harter Reload). |
 | **Rote Fehlermeldung im Terminal** nach einer Textänderung | Meist ein fehlendes Komma oder Anführungszeichen in einer `.js`-Datei. Die Meldung nennt Datei und Zeile. Oder Claude die Meldung zeigen. |
 

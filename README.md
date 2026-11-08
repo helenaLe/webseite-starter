@@ -17,9 +17,12 @@ Einmalig einrichten (alles kostenlos):
 | ---------------------- | --------------------------------------- | --------------------------------- |
 | GitHub-Konto           | speichert deine Dateien online          | https://github.com/signup         |
 | Cloudflare-Konto       | stellt die Webseite ins Internet        | https://dash.cloudflare.com/sign-up |
-| Node.js 22 (LTS)       | lässt die Seite auf deinem Rechner laufen | https://nodejs.org (Version „LTS“ wählen) |
+| Node.js (aktuelle LTS) | lässt die Seite auf deinem Rechner laufen | https://nodejs.org/de/download (Version „LTS“ wählen – Mac: `.pkg`, Windows: `x64.msi`) |
 | VS Code                | Programm zum Bearbeiten der Dateien     | https://code.visualstudio.com     |
 | Git                    | überträgt Änderungen zu GitHub          | https://git-scm.com/downloads (auf dem Mac meist schon da) |
+
+Optional: eine eigene Domain wie `deinname.de`. Sie ist das Einzige, was Geld
+kostet (wenige Euro im Jahr), siehe Schritt 7.
 
 **Test:** Öffne ein Terminal (in VS Code: Menü *Terminal → Neues Terminal*)
 und tippe:
@@ -28,7 +31,7 @@ und tippe:
 node -v
 ```
 
-Es muss eine Version ab `v22.12` erscheinen, z. B. `v22.19.0`. Wenn nicht:
+Es muss eine Version ab `v22.12` erscheinen, z. B. `v26.13.0`. Wenn nicht:
 Node.js neu installieren und Terminal neu öffnen.
 
 ## 2. Eigene Kopie anlegen
@@ -173,10 +176,73 @@ Einmalig einrichten, danach geht jeder `git push` automatisch online:
 
 Ab jetzt: jeder `git push` baut die Seite neu und stellt sie online.
 
-**Eigene Domain:** Im Pages-Projekt → **Custom domains** → **Set up a custom
-domain** → Domain eintragen und den Anweisungen folgen. Liegt die Domain bei
-einem anderen Anbieter, musst du dort einen CNAME-Eintrag setzen, den
-Cloudflare dir anzeigt.
+### Eigene Domain (z. B. `.de` bei INWX)
+
+Statt `meine-webseite.pages.dev` soll die Seite unter `deinname.de` laufen?
+Cloudflare selbst verkauft keine `.de`-Domains. Du kaufst sie deshalb bei
+einem deutschen Anbieter, z. B. **INWX** (https://www.inwx.de/de/domain/check),
+und verbindest sie dann mit Cloudflare.
+
+**Was kostet das?** Nur die Domain selbst, die du jährlich bei INWX bezahlst.
+Für `.de` sind das wenige Euro im Jahr, den aktuellen Preis zeigt INWX bei der
+Suche an. Cloudflare bleibt kostenlos: Pages und die DNS-Verwaltung sind im
+**Free-Plan** enthalten, und für eine Webseite wie diese brauchst du nichts
+anderes. Wenn Cloudflare dir einen Tarif anbietet, wähle **Free**.
+
+**Schritt 1: Domain bei INWX kaufen**
+
+1. Auf https://www.inwx.de/de/domain/check den Wunschnamen suchen.
+2. Ist er frei: in den Warenkorb, Konto anlegen, bezahlen. Webhosting oder
+   ein E-Mail-Paket brauchst du für die Webseite nicht.
+
+**Schritt 2: Domain bei Cloudflare anmelden**
+
+1. https://dash.cloudflare.com → **Add a domain** (oder *Domains → Onboard
+   a domain*).
+2. Deine Domain eintragen, z. B. `deinname.de`. Die Option, vorhandene
+   DNS-Einträge automatisch zu übernehmen, eingeschaltet lassen → **Continue**.
+3. Tarif **Free** wählen.
+4. Cloudflare zeigt dir die gefundenen Einträge. Einfach **Continue**.
+5. Am Ende zeigt Cloudflare **zwei Nameserver** an, etwa
+   `anna.ns.cloudflare.com` und `bob.ns.cloudflare.com`. Diese Seite offen
+   lassen oder die beiden Namen notieren.
+
+**Schritt 3: Nameserver bei INWX umstellen**
+
+Nameserver bestimmen, wer für deine Domain „zuständig“ ist. Ab jetzt soll
+das Cloudflare sein.
+
+1. Bei INWX anmelden → **Domains** → deine Domain anklicken.
+2. Falls **DNSSEC** eingeschaltet ist: zuerst ausschalten. (Sonst ist die
+   Domain nach dem Umstellen nicht erreichbar.)
+3. Bei **Nameserver** auf eigene/externe Nameserver umstellen und die
+   **beiden Cloudflare-Namen** eintragen. Die INWX-Nameserver entfernen.
+   Speichern.
+4. Zurück bei Cloudflare auf **Check nameservers** klicken. Das Umstellen
+   dauert meist unter einer Stunde, manchmal bis zu einem Tag. Cloudflare
+   schickt dir eine E-Mail, sobald die Domain **Active** ist.
+
+**Schritt 4: Domain mit der Webseite verbinden**
+
+1. Cloudflare → **Workers & Pages** → dein Projekt → Reiter **Custom
+   domains** → **Set up a custom domain**.
+2. `deinname.de` eintragen → **Continue** → **Activate domain**. Cloudflare
+   legt den nötigen Eintrag selbst an.
+3. Das Gleiche noch einmal mit `www.deinname.de`, damit beide Schreibweisen
+   funktionieren.
+4. Nach ein paar Minuten steht dort **Active**, und deine Seite ist unter
+   `https://deinname.de` erreichbar. Das Schloss-Symbol (HTTPS) richtet
+   Cloudflare kostenlos und automatisch ein.
+
+**Denk an:** Impressum und Datenschutzerklärung mit der neuen Adresse
+aktualisieren. Wenn du unter der Domain auch E-Mails empfangen möchtest
+(z. B. `hallo@deinname.de`), brauchst du dafür einen Mail-Anbieter. Dessen
+Einträge (MX, SPF) trägst du dann bei **Cloudflare → DNS** ein, nicht mehr
+bei INWX. Hast du bei INWX schon ein E-Mail-Postfach: vor Schritt 3 prüfen,
+dass Cloudflare die MX-Einträge in Schritt 2 übernommen hat.
+
+**Andere Anbieter:** Bei Strato, IONOS, All-Inkl. usw. funktioniert es genauso.
+Nur heißt der Menüpunkt für die Nameserver dort etwas anders.
 
 ## 8. Wenn etwas nicht klappt
 

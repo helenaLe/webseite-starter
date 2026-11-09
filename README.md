@@ -21,8 +21,8 @@ Einmalig einrichten (alles kostenlos):
 | VS Code                | Programm zum Bearbeiten der Dateien     | https://code.visualstudio.com     |
 | Git                    | überträgt Änderungen zu GitHub          | https://git-scm.com/downloads (auf dem Mac meist schon da) |
 
-Optional: eine eigene Domain wie `deinname.de`. Sie ist das Einzige, was Geld
-kostet (wenige Euro im Jahr), siehe Schritt 7.
+Optional: eine eigene Domain wie `deinname.com` oder `deinname.de`. Sie ist
+das Einzige, was Geld kostet (rund 10 € im Jahr), siehe Schritt 7.
 
 **Test:** Öffne ein Terminal (in VS Code: Menü *Terminal → Neues Terminal*)
 und tippe:
@@ -187,18 +187,81 @@ Einmalig einrichten, danach geht jeder `git push` automatisch online:
 
 Ab jetzt: jeder `git push` baut die Seite neu und stellt sie online.
 
-### Eigene Domain (z. B. `.de` bei INWX)
+### Eigene Domain
 
-Statt `meine-webseite.pages.dev` soll die Seite unter `deinname.de` laufen?
+Statt `meine-webseite.pages.dev` soll die Seite unter `deinname.com` oder
+`deinname.de` laufen? Dafür gibt es zwei Möglichkeiten, je nach Endung:
+
+| Endung | Wo kaufen | Aufwand |
+| --- | --- | --- |
+| `.com`, `.net`, `.org`, `.info` u. v. m. | direkt bei **Cloudflare** (Variante A) | am einfachsten: Domain landet sofort im richtigen Konto, nichts umstellen |
+| `.de` | bei einem deutschen Anbieter, z. B. **INWX** (Variante B) | zwei Schritte mehr: Cloudflare verkauft keine `.de`-Domains |
+
+**Was kostet das?** Nur die Domain selbst, einmal im Jahr. Cloudflare bleibt
+kostenlos: Pages und die DNS-Verwaltung sind im **Free-Plan** enthalten, und
+für eine Webseite wie diese brauchst du nichts anderes. Wenn Cloudflare dir
+einen Tarif anbietet, wähle **Free**.
+
+- **Bei Cloudflare** zahlst du den reinen Selbstkostenpreis: Gebühr der
+  Vergabestelle plus ICANN-Gebühr, ohne Aufschlag. Die Verlängerung kostet
+  genauso viel wie der Kauf, es gibt keinen Lockpreis fürs erste Jahr. Eine
+  `.com` kostet etwa **11 US-Dollar im Jahr** (Stand November 2026: 11,17 $,
+  also rund 10 €). Abgerechnet wird in US-Dollar per Kreditkarte oder PayPal.
+  Den genauen Preis zeigt Cloudflare bei der Suche an.
+- **Bei INWX** kostet eine `.de` wenige Euro im Jahr, den aktuellen Preis
+  zeigt INWX bei der Suche an.
+
+#### Variante A: `.com` direkt bei Cloudflare kaufen
+
+Cloudflare Registrar ist Cloudflares eigener Domain-Verkauf. Die Domain
+gehört dir, liegt aber von Anfang an in deinem Cloudflare-Konto. Darum
+entfällt alles, was bei Variante B mit Nameservern zu tun hat.
+
+**Vorher wissen:**
+
+- Der Name darf keine Umlaute oder Sonderzeichen enthalten (`ü`, `ß` usw.).
+  Cloudflare unterstützt solche Domains nicht.
+- Den Namen vor dem Kauf genau prüfen. Cloudflare erstattet nichts, auch
+  nicht bei einem Tippfehler, weil das Geld sofort an die Vergabestelle geht.
+- Die Domain verlängert sich **automatisch** jedes Jahr und wird von deinem
+  Zahlungsmittel abgebucht. Das ist gewollt: So läuft deine Webseite nicht
+  plötzlich aus. Wenn du sie nicht mehr brauchst: *Domain Registration →
+  Manage Domains* → Domain → **Auto-renew** ausschalten, mindestens 30 Tage
+  vor Ablauf.
+
+**So geht's:**
+
+1. https://dash.cloudflare.com → links **Domain Registration → Register
+   Domains**.
+2. Wunschnamen eintippen → **Search**. Taucht `deinname.com` in der Liste
+   auf, ist er frei. Fehlt er, ist er vergeben.
+3. Bei deinem Namen auf **Purchase** klicken.
+4. **Payment option:** Laufzeit wählen. 1 Jahr reicht, verlängert wird ja
+   automatisch. Mehrere Jahre im Voraus sind möglich, bis zu 10.
+5. **Kontaktdaten** eintragen: Name, Adresse, Telefon, E-Mail. Das verlangt
+   die ICANN (die Organisation hinter den Domains) für jede Domain weltweit.
+   Zwei Dinge beachten:
+   - Nur Buchstaben ohne Umlaute: `Mueller` statt `Müller`, `Strasse` statt
+     `Straße`.
+   - Die Daten müssen stimmen, sonst darf die Domain gesperrt werden. Im
+     öffentlichen Verzeichnis (WHOIS) schwärzt Cloudflare sie trotzdem, sie
+     sind also nicht für jeden sichtbar.
+6. **Payment:** Kreditkarte oder PayPal hinterlegen.
+7. Bedingungen bestätigen → **Complete purchase**. Nach ein paar Sekunden
+   ist die Domain gekauft, und du landest auf ihrer Verwaltungsseite.
+8. **Wichtig:** Cloudflare schickt dir eine E-Mail mit einem Bestätigungslink
+   (Betreff etwa *Verify your email address*). Diesen Link anklicken. Ohne
+   Bestätigung wird die Domain nach kurzer Zeit gesperrt und deine Webseite
+   ist nicht erreichbar.
+
+Fertig. Deine Domain ist sofort in deinem Cloudflare-Konto aktiv. Weiter
+unten bei **„Domain mit der Webseite verbinden“**.
+
+#### Variante B: `.de` bei INWX kaufen und zu Cloudflare bringen
+
 Cloudflare selbst verkauft keine `.de`-Domains. Du kaufst sie deshalb bei
 einem deutschen Anbieter, z. B. **INWX** (https://www.inwx.de/de/domain/check),
 und verbindest sie dann mit Cloudflare.
-
-**Was kostet das?** Nur die Domain selbst, die du jährlich bei INWX bezahlst.
-Für `.de` sind das wenige Euro im Jahr, den aktuellen Preis zeigt INWX bei der
-Suche an. Cloudflare bleibt kostenlos: Pages und die DNS-Verwaltung sind im
-**Free-Plan** enthalten, und für eine Webseite wie diese brauchst du nichts
-anderes. Wenn Cloudflare dir einen Tarif anbietet, wähle **Free**.
 
 **Schritt 1: Domain bei INWX kaufen**
 
@@ -233,27 +296,27 @@ das Cloudflare sein.
    dauert meist unter einer Stunde, manchmal bis zu einem Tag. Cloudflare
    schickt dir eine E-Mail, sobald die Domain **Active** ist.
 
-**Schritt 4: Domain mit der Webseite verbinden**
+**Andere Anbieter:** Bei Strato, IONOS, All-Inkl. usw. funktioniert es genauso.
+Nur heißt der Menüpunkt für die Nameserver dort etwas anders.
+
+#### Domain mit der Webseite verbinden (beide Varianten)
 
 1. Cloudflare → **Workers & Pages** → dein Projekt → Reiter **Custom
    domains** → **Set up a custom domain**.
-2. `deinname.de` eintragen → **Continue** → **Activate domain**. Cloudflare
-   legt den nötigen Eintrag selbst an.
-3. Das Gleiche noch einmal mit `www.deinname.de`, damit beide Schreibweisen
+2. `deinname.com` (bzw. `deinname.de`) eintragen → **Continue** →
+   **Activate domain**. Cloudflare legt den nötigen Eintrag selbst an.
+3. Das Gleiche noch einmal mit `www.deinname.com`, damit beide Schreibweisen
    funktionieren.
 4. Nach ein paar Minuten steht dort **Active**, und deine Seite ist unter
-   `https://deinname.de` erreichbar. Das Schloss-Symbol (HTTPS) richtet
+   `https://deinname.com` erreichbar. Das Schloss-Symbol (HTTPS) richtet
    Cloudflare kostenlos und automatisch ein.
 
 **Denk an:** Impressum und Datenschutzerklärung mit der neuen Adresse
 aktualisieren. Wenn du unter der Domain auch E-Mails empfangen möchtest
-(z. B. `hallo@deinname.de`), brauchst du dafür einen Mail-Anbieter. Dessen
-Einträge (MX, SPF) trägst du dann bei **Cloudflare → DNS** ein, nicht mehr
-bei INWX. Hast du bei INWX schon ein E-Mail-Postfach: vor Schritt 3 prüfen,
-dass Cloudflare die MX-Einträge in Schritt 2 übernommen hat.
-
-**Andere Anbieter:** Bei Strato, IONOS, All-Inkl. usw. funktioniert es genauso.
-Nur heißt der Menüpunkt für die Nameserver dort etwas anders.
+(z. B. `hallo@deinname.com`), brauchst du dafür einen Mail-Anbieter. Dessen
+Einträge (MX, SPF) trägst du bei **Cloudflare → DNS** ein, bei Variante B also
+nicht mehr bei INWX. Hast du bei INWX schon ein E-Mail-Postfach: vor
+Schritt 3 prüfen, dass Cloudflare die MX-Einträge in Schritt 2 übernommen hat.
 
 ## 8. Wenn etwas nicht klappt
 
